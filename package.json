@@ -1,0 +1,16 @@
+{
+  "name": "learning-webpack",
+  "version": "0.0.0",
+  "description": "웹팩 가이드라인 따라해보면서 학습해보기",
+  "scripts": {
+    "deploy": "npm run build && npx gh-pages -d dist"
+  },
+  "author": "jaehyeonjung0613",
+  "homepage": "https://jaehyeonjung0613.github.io/learning-webpack",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.6.2",
+    "webpack": "^5.95.0",
+    "webpack-cli": "^5.1.4"
+  }
+}
