@@ -36,6 +36,17 @@ react에 대해 어느 정도 알고 있었지만 webpack은 생소하여 부족
 
 ## 🧪 실험
 
+### 특정 파일들 한 폴더에 bundle
+
+에셋과 같은 파일과 소스 파일을 분리하여 bundle 할 수 있는지 확인해본다.
+
+### Typescript Path Alias 설정
+
+typescript에는 import 경로를 줄일 수 있도록 path alias 기능이 존재한다.
+
+보통 <b>@{folder}</b>로 쓰는 경우가 많은데,
+webpack module loader 설정에서 정규식 대상(test:)으로 path alias를 인식하는지 확인해본다.
+
 ## 📚 기술 스택
 
 ### 🔧 환경
