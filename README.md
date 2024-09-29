@@ -25,6 +25,18 @@ react에 대해 어느 정도 알고 있었지만 webpack은 생소하여 부족
 - [x] NPM Scripts
 - [x] Conclusion
 
+### Asset Management
+
+- [ ] Setup
+- [ ] Loading CSS
+- [ ] Loading Images
+- [ ] Loading Fonts
+- [ ] Loading Data
+- [ ] Global Assets
+- [ ] Wrapping up
+- [ ] Next guide
+- [ ] Further Reading
+
 ## 🧪 실험
 
 ## 📚 기술 스택
