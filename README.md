@@ -18,12 +18,12 @@ react에 대해 어느 정도 알고 있었지만 webpack은 생소하여 부족
 
 ### Getting Started
 
-- [ ] Basic Setup
-- [ ] Creating a Bundle
-- [ ] Modules
-- [ ] Using a Configuration
-- [ ] NPM Scripts
-- [ ] Conclusion
+- [x] Basic Setup
+- [x] Creating a Bundle
+- [x] Modules
+- [x] Using a Configuration
+- [x] NPM Scripts
+- [x] Conclusion
 
 ## 🧪 실험
 
