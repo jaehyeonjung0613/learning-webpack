@@ -27,15 +27,12 @@ react에 대해 어느 정도 알고 있었지만 webpack은 생소하여 부족
 
 ### Asset Management
 
-- [ ] Setup
-- [ ] Loading CSS
-- [ ] Loading Images
-- [ ] Loading Fonts
-- [ ] Loading Data
-- [ ] Global Assets
-- [ ] Wrapping up
-- [ ] Next guide
-- [ ] Further Reading
+- [x] Setup
+- [x] Loading CSS
+- [x] Loading Images
+- [x] Loading Fonts
+- [x] Loading Data
+- [x] Global Assets
 
 ## 🧪 실험
 
