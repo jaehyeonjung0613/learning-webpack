@@ -40,6 +40,7 @@ react에 대해 어느 정도 알고 있었지만 webpack은 생소하여 부족
 ### 🌏 언어
 
 <span>
+  <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
   <img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white">
 </span>
 
