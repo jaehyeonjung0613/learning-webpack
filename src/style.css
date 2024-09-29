@@ -1,0 +1,13 @@
+/* @font-face {
+  font-family: 'MyFont';
+  src:
+    url('./Roboto-Bold.ttf') format('truetype'),
+    url('./OpenSans-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+} */
+
+.hello {
+  color: red;
+  /* font-family: 'MyFont'; */
+}
