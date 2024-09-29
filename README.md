@@ -16,6 +16,15 @@ react에 대해 어느 정도 알고 있었지만 webpack은 생소하여 부족
 
 ## 🚀 학습 과정
 
+### Getting Started
+
+- [ ] Basic Setup
+- [ ] Creating a Bundle
+- [ ] Modules
+- [ ] Using a Configuration
+- [ ] NPM Scripts
+- [ ] Conclusion
+
 ## 🧪 실험
 
 ## 📚 기술 스택
