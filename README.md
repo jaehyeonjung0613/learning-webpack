@@ -40,6 +40,189 @@ react에 대해 어느 정도 알고 있었지만 webpack은 생소하여 부족
 
 에셋과 같은 파일과 소스 파일을 분리하여 bundle 할 수 있는지 확인해본다.
 
+#### 소스 구조와 bundle된 구조가 동일한지 확인
+
+소스에 에셋 폴더를 생성하고 bundle한다면, 구조가 유지되는지 확인
+
+<pre>
+<code style="color:#a5cee1"><span>    src</span>
+<span style="color:#9df29d">+   |- public</span>
+<span style="color:#9df29d">+     |- icon.png</span>
+<span style="color:#f79494">-   |- icon.png</span>
+</code>
+</pre>
+
+먼저 위와 같이 public 폴더 생성 후 에셋 파일들을 이동시킨다.
+
+```typescript
+import _ from 'lodash';
+import './style.css';
+import Icon from './public/icon.png';
+import Data from './data.xml';
+import Notes from './data.csv';
+import toml from './data.toml';
+import yaml from './data.yaml';
+import json from './data.json5';
+```
+
+변경된 파일 경로와 동일하게 import 경로를 수정한다.
+
+```bash
+> learning-webpack@0.0.0 build
+> webpack
+
+assets by status 39 KiB [cached] 1 asset
+asset bundle.js 75.8 KiB [emitted] [minimized] (name: main) 1 related asset
+runtime modules 2.28 KiB 8 modules
+javascript modules 543 KiB
+  modules by path ./node_modules/ 539 KiB
+    modules by path ./node_modules/style-loader/dist/runtime/*.js 5.84 KiB 6 modules
+    modules by path ./node_modules/css-loader/dist/runtime/*.js 2.31 KiB 2 modules  
+    + 1 module
+  modules by path ./src/ 3.38 KiB
+    modules by path ./src/*.css 1.78 KiB 2 modules
+    + 3 modules
+json modules 565 bytes
+  ./src/data.toml 188 bytes [built] [code generated]
+  ./src/data.yaml 188 bytes [built] [code generated]
+  ./src/data.json5 189 bytes [built] [code generated]
+./src/public/icon.png 42 bytes (javascript) 39 KiB (asset) [built] [code generated]
+...
+```
+
+<img src="https://github.com/user-attachments/assets/9d704291-0ddb-4b69-9fd0-49eda256aad9" />
+
+빌드 수행 후 결과를 확인하였지만, 여전히 에셋과 분리가 안되어있는걸 볼 수 있다.
+
+#### webpack config 옵션 확인
+
+웹팩 설정 옵션을 찾아보는 중 이와 같은 상황을 위해 Rule.generator 있다고 한다. 
+
+실제로 작동하는지 확인보도록 한다.
+
+```javascript
+// webpack.config.js
+{
+  ...
+  module: {
+    rules: [
+      {
+        ...
+        generator: {
+          filename: '',
+          publicPath: '',
+          outputPath: ''
+        },
+      }
+    ]
+  }
+}
+```
+Rule.generator에 다양한 옵션이 있지만, 그 중 현재 실험과 관련된 옵션만 다룬다면 위와 같다.
+
+|옵션|설명|
+|:---:|:---|
+|filename|bundle 시 파일 경로|
+|publicPath|bundle 소스 앞 경로(prefix 기능과 유사) 추가|
+|outputPath|bundle 파일 경로(bundle 소스 path 적용 x)|
+
+얼핏 보면 filename과 outputPath의 기능이 동일하다고 생각할 수 있는데, 약간의 차이점이 있다.
+
+filename 설정은 bundle 에셋 이동과 bundle 소스 path 적용까지 하지만, outputPath는 bundle 에셋 이동만 적용한다는 점이 다르다.
+
+```javascript
+// webpack.config.js
+{
+  ...
+  module: {
+    rules: [
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'public/[hash][ext]',
+        },
+      },
+    ]
+  }
+}
+```
+filename 옵션을 통해 public 폴더 밑에 에셋 파일을 생성하려면 위와 같이 설정하면된다.
+
+[hash]는 bundle 후 생성된 파일명을 의미하고 [ext](. 포함)은 확장자를 의미한다.
+
+<img src="https://github.com/user-attachments/assets/547c9dfc-7b91-4bb6-958a-928f6c944041" />
+
+<img src="https://github.com/user-attachments/assets/caac048e-a417-4969-9e84-f2789171248c" />
+
+위와 같이 에셋 이동과 bundle 소스 path가 잘 적용되어 나온 것을 볼 수 있다.
+
+```javascript
+// webpack.config.js
+{
+  ...
+  module: {
+    rules: [
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+        generator: {
+          outputPath: 'public/',
+        },
+      },
+    ]
+  }
+}
+```
+
+outputPath 옵션 설정은 위와 같이 설정하면된다.
+
+<img src="https://github.com/user-attachments/assets/2fcb053f-6d1f-4a2a-b5a3-da9797eb101f">
+
+<img src="https://github.com/user-attachments/assets/b9ca87d7-e9ea-4dd2-bb58-4370931e1381">
+
+반면 outputPath는 에셋 이동이 되었음에도 불구하구 실제 실행하였을때 리소스를 못가져오고있다.
+
+<img src="https://github.com/user-attachments/assets/6d31611b-713b-4e7a-a76e-871feff6ca23" />
+
+해당 리소스 경로를 보았을때, 에셋 경로인 public/이 아닌 bundle 위치로 조회하는 것을 볼 수 있다.
+```javascript
+// webpack.config.js
+{
+  ...
+  module: {
+    rules: [
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'public/[hash][ext]',
+        },
+      },
+    ]
+  }
+},
+{
+  ...
+  module: {
+    rules: [
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+        generator: {
+          publicPath: 'public/',
+          outputPath: 'public/',
+        },
+      },
+    ]
+  }
+}
+```
+
+따라서 위 옵션들을 사용하였을때 솔루션을 적용할 수 있는 방법은 위와 두 가지가 있다.
+
+filename은 에셋 이동에 대한 모든 기능이 있으니 그대로 사용하면 되고, outputPath의 경우 에셋 이동 기능만 있으니 bundle 소스 앞 경로에 설정된 url를 적용하는 publicPath를 같이 사용하면 된다. 
+
 ### Typescript Path Alias 설정
 
 typescript에는 import 경로를 줄일 수 있도록 path alias 기능이 존재한다.

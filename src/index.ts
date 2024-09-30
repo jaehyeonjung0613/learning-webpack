@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import './style.css';
-import Icon from './icon.png';
+import Icon from './public/icon.png';
 import Data from './data.xml';
 import Notes from './data.csv';
 import toml from './data.toml';
