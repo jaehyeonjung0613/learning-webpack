@@ -152,7 +152,7 @@ filename 옵션을 통해 public 폴더 밑에 에셋 파일을 생성하려면 
 [hash]는 bundle 후 생성된 파일명을 의미하고 [ext](. 포함)은 확장자를 의미한다.
 
 <img src="https://github.com/user-attachments/assets/547c9dfc-7b91-4bb6-958a-928f6c944041" />
-
+<br />
 <img src="https://github.com/user-attachments/assets/caac048e-a417-4969-9e84-f2789171248c" />
 
 위와 같이 에셋 이동과 bundle 소스 path가 잘 적용되어 나온 것을 볼 수 있다.
@@ -178,7 +178,7 @@ filename 옵션을 통해 public 폴더 밑에 에셋 파일을 생성하려면 
 outputPath 옵션 설정은 위와 같이 설정하면된다.
 
 <img src="https://github.com/user-attachments/assets/2fcb053f-6d1f-4a2a-b5a3-da9797eb101f">
-
+<br />
 <img src="https://github.com/user-attachments/assets/b9ca87d7-e9ea-4dd2-bb58-4370931e1381">
 
 반면 outputPath는 에셋 이동이 되었음에도 불구하구 실제 실행하였을때 리소스를 못가져오고있다.
