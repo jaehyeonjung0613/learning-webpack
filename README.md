@@ -230,6 +230,110 @@ typescript에는 import 경로를 줄일 수 있도록 path alias 기능이 존�
 보통 <b>@{folder}</b>로 쓰는 경우가 많은데,
 webpack module loader 설정에서 정규식 대상(test:)으로 path alias를 인식하는지 확인해본다.
 
+```json
+// tsconfig.json
+{
+  ...
+  "baseUrl": "./"                                  /* Specify the base directory to resolve non-relative module names. */,
+  "paths": {
+    "@public/*": ["src/public/*"]
+  }                                      /* Specify a set of entries that re-map imports to additional lookup locations. */,
+  ...
+}
+```
+```typescript
+import _ from 'lodash';
+import './style.css';
+import Icon from '@public/icon.png'
+import Data from './data.xml';
+import Notes from './data.csv';
+import toml from './data.toml';
+import yaml from './data.yaml';
+import json from './data.json5';
+```
+
+먼저 typescript path alias 사용하기 위해 위와 같이
+tsconfig.json과 index.ts 파일을 수정한다.
+
+```bash
+...
+ERROR in ./src/index.ts 3:0-36
+Module not found: Error: Can't resolve '@public/icon.png' in 'D:\jaehyeonjung\learning-webpack\src'
+resolve '@public/icon.png' in 'D:\jaehyeonjung\learning-webpack\src'
+  Parsed request is a module
+  using description file: D:\jaehyeonjung\learning-webpack\package.json (relative path: ./src)
+    Field 'browser' doesn't contain a valid alias configuration
+    resolve as module
+      D:\jaehyeonjung\learning-webpack\src\node_modules doesn't exist or is not a directory
+      looking for modules in D:\jaehyeonjung\learning-webpack\node_modules
+        single file module
+          using description file: D:\jaehyeonjung\learning-webpack\package.json (relative path: ./node_modules/@public/icon.png)
+            no extension
+              Field 'browser' doesn't contain a valid alias configuration
+              D:\jaehyeonjung\learning-webpack\node_modules\@public\icon.png doesn't exist
+            .js
+              Field 'browser' doesn't contain a valid alias configuration
+              D:\jaehyeonjung\learning-webpack\node_modules\@public\icon.png.js doesn't exist
+            .ts
+              Field 'browser' doesn't contain a valid alias configuration
+              D:\jaehyeonjung\learning-webpack\node_modules\@public\icon.png.ts doesn't exist
+        D:\jaehyeonjung\learning-webpack\node_modules\@public\icon.png doesn't exist
+      D:\jaehyeonjung\node_modules doesn't exist or is not a directory
+      D:\node_modules doesn't exist or is not a directory
+
+webpack 5.95.0 compiled with 1 error and 1 warning in 9424 ms
+```
+
+이후 빌드를 시도하였지만 실패하는 것을 볼 수 있다.
+
+ts-loader에서 path alias을 인식하지 못해 모듈로 불러왔으나 존재하지않은 모듈로 인해 build가 실패했다는 내용이다.
+
+여러 해결할 수 있는 방법이 있지만 그 중 ts-loader에서 소개하고있는 plugin 설정을 이용할 것이다.
+
+<img src="https://github.com/user-attachments/assets/28e8b5e3-5646-4154-ab2a-70fbe57f4b4e" />
+
+방법은 간단하다. 위에 처럼 **tsconfig-paths-webpack-plugin**을 설치한 후에 plugins에 추가 설정만 하면된다.
+
+```bash
+npm i -D tsconfig-paths-webpack-plugin
+```
+```javascript
+// webpack.config.js
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+
+module.exports = {
+  ...
+  resolve: { 
+    extensions: ['.js', '.ts'],
+    plugins: [new TsconfigPathsPlugin({})],
+  },
+  ...
+};
+```
+```bash
+> learning-webpack@0.0.0 build
+> webpack
+
+asset bundle.js 75.8 KiB [emitted] [minimized] (name: main) 1 related asset
+asset public/a1af828b4e65d37668e1.png 39 KiB [emitted] [immutable] [from: src/public/icon.png] (auxiliary name: main)
+runtime modules 2.28 KiB 8 modules
+javascript modules 543 KiB
+  modules by path ./node_modules/ 539 KiB
+    modules by path ./node_modules/style-loader/dist/runtime/*.js 5.84 KiB 6 modules
+    modules by path ./node_modules/css-loader/dist/runtime/*.js 2.31 KiB 2 modules
+    + 1 module
+  modules by path ./src/ 3.38 KiB
+    modules by path ./src/*.css 1.78 KiB 2 modules
+    + 3 modules
+json modules 565 bytes
+  ./src/data.toml 188 bytes [built] [code generated]
+  ./src/data.yaml 188 bytes [built] [code generated]
+  ./src/data.json5 189 bytes [built] [code generated]
+./src/public/icon.png 42 bytes (javascript) 39 KiB (asset) [built] [code generated]
+```
+
+빌드가 성공적으로 완료된 것을 볼 수 있다.
+
 ## 📚 기술 스택
 
 ### 🔧 환경

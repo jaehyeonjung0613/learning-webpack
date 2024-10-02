@@ -3,9 +3,14 @@ const toml = require('toml');
 const yaml = require('yamljs');
 const json5 = require('json5');
 
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+
 module.exports = {
   entry: './src/index.ts',
-  resolve: { extensions: ['.js', '.ts'] },
+  resolve: { 
+    extensions: ['.js', '.ts'],
+    plugins: [new TsconfigPathsPlugin({})],
+  },
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist')
