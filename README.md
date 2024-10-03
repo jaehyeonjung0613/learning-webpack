@@ -36,11 +36,11 @@ react에 대해 어느 정도 알고 있었지만 webpack은 생소하여 부족
 
 ### Output Management
 
-- [ ] Preparation
-- [ ] Setting up HtmlWebpackPlugin
-- [ ] Cleaning up the /dist folder
-- [ ] The Manifest
-- [ ] Conclusion
+- [x] Preparation
+- [x] Setting up HtmlWebpackPlugin
+- [x] Cleaning up the /dist folder
+- [x] The Manifest
+- [x] Conclusion
 
 ## 🧪 실험
 
