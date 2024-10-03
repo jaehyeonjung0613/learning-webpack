@@ -1,19 +1,26 @@
 const path = require('path');
-const toml = require('toml');
-const yaml = require('yamljs');
-const json5 = require('json5');
 
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.ts',
-  resolve: { 
+  entry: {
+    index: './src/index.ts',
+    print: './src/print.ts'
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Output Management'
+    })
+  ],
+  resolve: {
     extensions: ['.js', '.ts'],
-    plugins: [new TsconfigPathsPlugin({})],
+    plugins: [new TsconfigPathsPlugin({})]
   },
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    clean: true
   },
   module: {
     rules: [
@@ -32,8 +39,8 @@ module.exports = {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
         generator: {
-          filename: 'public/[hash][ext]',
-        },
+          filename: 'public/[hash][ext]'
+        }
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
@@ -46,27 +53,6 @@ module.exports = {
       {
         test: /.xml$/i,
         use: ['xml-loader']
-      },
-      {
-        test: /\.toml$/i,
-        type: 'json',
-        parser: {
-          parse: toml.parse
-        }
-      },
-      {
-        test: /\.yaml$/i,
-        type: 'json',
-        parser: {
-          parse: yaml.parse
-        }
-      },
-      {
-        test: /\.json5$/i,
-        type: 'json',
-        parser: {
-          parse: json5.parse
-        }
       }
     ]
   }
