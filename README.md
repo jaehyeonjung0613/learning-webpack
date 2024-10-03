@@ -34,6 +34,14 @@ react에 대해 어느 정도 알고 있었지만 webpack은 생소하여 부족
 - [x] Loading Data
 - [x] Global Assets
 
+### Output Management
+
+- [ ] Preparation
+- [ ] Setting up HtmlWebpackPlugin
+- [ ] Cleaning up the /dist folder
+- [ ] The Manifest
+- [ ] Conclusion
+
 ## 🧪 실험
 
 ### 특정 파일들 한 폴더에 bundle
@@ -77,7 +85,7 @@ runtime modules 2.28 KiB 8 modules
 javascript modules 543 KiB
   modules by path ./node_modules/ 539 KiB
     modules by path ./node_modules/style-loader/dist/runtime/*.js 5.84 KiB 6 modules
-    modules by path ./node_modules/css-loader/dist/runtime/*.js 2.31 KiB 2 modules  
+    modules by path ./node_modules/css-loader/dist/runtime/*.js 2.31 KiB 2 modules
     + 1 module
   modules by path ./src/ 3.38 KiB
     modules by path ./src/*.css 1.78 KiB 2 modules
@@ -96,7 +104,7 @@ json modules 565 bytes
 
 #### webpack config 옵션 확인
 
-웹팩 설정 옵션을 찾아보는 중 이와 같은 상황을 위해 Rule.generator 있다고 한다. 
+웹팩 설정 옵션을 찾아보는 중 이와 같은 상황을 위해 Rule.generator 있다고 한다.
 
 실제로 작동하는지 확인보도록 한다.
 
@@ -118,13 +126,14 @@ json modules 565 bytes
   }
 }
 ```
+
 Rule.generator에 다양한 옵션이 있지만, 그 중 현재 실험과 관련된 옵션만 다룬다면 위와 같다.
 
-|옵션|설명|
-|:---:|:---|
-|filename|bundle 시 파일 경로|
-|publicPath|bundle 소스 앞 경로(prefix 기능과 유사) 추가|
-|outputPath|bundle 파일 경로(bundle 소스 path 적용 x)|
+|    옵션    | 설명                                         |
+| :--------: | :------------------------------------------- |
+|  filename  | bundle 시 파일 경로                          |
+| publicPath | bundle 소스 앞 경로(prefix 기능과 유사) 추가 |
+| outputPath | bundle 파일 경로(bundle 소스 path 적용 x)    |
 
 얼핏 보면 filename과 outputPath의 기능이 동일하다고 생각할 수 있는데, 약간의 차이점이 있다.
 
@@ -147,6 +156,7 @@ filename 설정은 bundle 에셋 이동과 bundle 소스 path 적용까지 하�
   }
 }
 ```
+
 filename 옵션을 통해 public 폴더 밑에 에셋 파일을 생성하려면 위와 같이 설정하면된다.
 
 [hash]는 bundle 후 생성된 파일명을 의미하고 [ext](. 포함)은 확장자를 의미한다.
@@ -186,6 +196,7 @@ outputPath 옵션 설정은 위와 같이 설정하면된다.
 <img src="https://github.com/user-attachments/assets/6d31611b-713b-4e7a-a76e-871feff6ca23" />
 
 해당 리소스 경로를 보았을때, 에셋 경로인 public/이 아닌 bundle 위치로 조회하는 것을 볼 수 있다.
+
 ```javascript
 // webpack.config.js
 {
@@ -221,7 +232,7 @@ outputPath 옵션 설정은 위와 같이 설정하면된다.
 
 따라서 위 옵션들을 사용하였을때 솔루션을 적용할 수 있는 방법은 위와 두 가지가 있다.
 
-filename은 에셋 이동에 대한 모든 기능이 있으니 그대로 사용하면 되고, outputPath의 경우 에셋 이동 기능만 있으니 bundle 소스 앞 경로에 설정된 url를 적용하는 publicPath를 같이 사용하면 된다. 
+filename은 에셋 이동에 대한 모든 기능이 있으니 그대로 사용하면 되고, outputPath의 경우 에셋 이동 기능만 있으니 bundle 소스 앞 경로에 설정된 url를 적용하는 publicPath를 같이 사용하면 된다.
 
 ### Typescript Path Alias 설정
 
@@ -241,10 +252,11 @@ webpack module loader 설정에서 정규식 대상(test:)으로 path alias를 �
   ...
 }
 ```
+
 ```typescript
 import _ from 'lodash';
 import './style.css';
-import Icon from '@public/icon.png'
+import Icon from '@public/icon.png';
 import Data from './data.xml';
 import Notes from './data.csv';
 import toml from './data.toml';
@@ -297,19 +309,21 @@ ts-loader에서 path alias을 인식하지 못해 모듈로 불러왔으나 존�
 ```bash
 npm i -D tsconfig-paths-webpack-plugin
 ```
+
 ```javascript
 // webpack.config.js
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
   ...
-  resolve: { 
+  resolve: {
     extensions: ['.js', '.ts'],
     plugins: [new TsconfigPathsPlugin({})],
   },
   ...
 };
 ```
+
 ```bash
 > learning-webpack@0.0.0 build
 > webpack
