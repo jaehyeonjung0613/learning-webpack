@@ -42,6 +42,13 @@ react에 대해 어느 정도 알고 있었지만 webpack은 생소하여 부족
 - [x] The Manifest
 - [x] Conclusion
 
+### Development
+
+- [ ] Using source maps
+- [ ] Choosing a Development Tool
+- [ ] Adjusting Your Text Editor
+- [ ] Conclusion
+
 ## 🧪 실험
 
 ### 특정 파일들 한 폴더에 bundle
