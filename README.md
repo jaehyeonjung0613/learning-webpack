@@ -44,10 +44,10 @@ react에 대해 어느 정도 알고 있었지만 webpack은 생소하여 부족
 
 ### Development
 
-- [ ] Using source maps
-- [ ] Choosing a Development Tool
-- [ ] Adjusting Your Text Editor
-- [ ] Conclusion
+- [x] Using source maps
+- [x] Choosing a Development Tool
+- [x] Adjusting Your Text Editor
+- [x] Conclusion
 
 ## 🧪 실험
 
