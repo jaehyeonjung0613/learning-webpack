@@ -4,13 +4,19 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
+  mode: 'development',
   entry: {
     index: './src/index.ts',
     print: './src/print.ts'
   },
+  devtool: 'inline-source-map',
+  devServer: {
+    static: './dist',
+    port: 3000
+  },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Output Management'
+      title: 'Development'
     })
   ],
   resolve: {
@@ -20,7 +26,11 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    clean: true
+    clean: true,
+    publicPath: '/'
+  },
+  optimization: {
+    runtimeChunk: 'single'
   },
   module: {
     rules: [
