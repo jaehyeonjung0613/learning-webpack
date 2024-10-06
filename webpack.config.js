@@ -6,8 +6,7 @@ const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 module.exports = {
   mode: 'development',
   entry: {
-    index: './src/index.ts',
-    print: './src/print.ts'
+    index: './src/index.ts'
   },
   devtool: 'inline-source-map',
   devServer: {
@@ -28,9 +27,6 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     clean: true,
     publicPath: '/'
-  },
-  optimization: {
-    runtimeChunk: 'single'
   },
   module: {
     rules: [

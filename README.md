@@ -51,11 +51,11 @@ react에 대해 어느 정도 알고 있었지만 webpack은 생소하여 부족
 
 ### Code Splitting
 
-- [ ] Entry Points
-- [ ] Prevent Duplication
-- [ ] Dynamic Imports
-- [ ] Prefetching/Preloading modules
-- [ ] Bundle Analysis
+- [x] Entry Points
+- [x] Prevent Duplication
+- [x] Dynamic Imports
+- [x] Prefetching/Preloading modules
+- [x] Bundle Analysis
 
 ## 🧪 실험
 
