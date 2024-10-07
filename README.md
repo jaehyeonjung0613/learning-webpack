@@ -57,6 +57,12 @@ react에 대해 어느 정도 알고 있었지만 webpack은 생소하여 부족
 - [x] Prefetching/Preloading modules
 - [x] Bundle Analysis
 
+### Caching
+
+- [ ] Output Filenames
+- [ ] Extracting Boilerplate
+- [ ] Module Identifiers
+
 ## 🧪 실험
 
 ### 특정 파일들 한 폴더에 bundle
