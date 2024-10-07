@@ -8,6 +8,7 @@
     "watch": "webpack --watch",
     "start": "webpack serve --open",
     "server": "node server.js",
+    "analysis": "webpack --profile --json > stats.json",
     "build": "webpack",
     "deploy": "npm run build && npx gh-pages -d dist"
   },

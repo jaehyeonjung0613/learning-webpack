@@ -365,7 +365,26 @@ json modules 565 bytes
 
 ### Bundle Analysis analyse
 
-webpack 공식 분석 도구인 analyse 라이브러리의 사용법을 확인해본다.
+webpack 공식 분석 도구인 analyse 사용법을 확인해본다.
+
+```json
+// package.json
+{
+  "scripts": {
+    ...
+    "analysis": "webpack --profile --json > stats.json",
+    ...
+  },
+}
+```
+
+먼저 analyse 분석 도구를 사용하기 전, webpack 통계 데이터를 추출한다.
+
+<img src="https://github.com/user-attachments/assets/2a4fce7a-b8e8-4fdb-8305-9470fe9f947a" />
+
+그 다음 [analyse](https://webpack.github.io/analyse/) 링크에 들어가서 통계 데이터를 업로드하면된다.
+
+메뉴는 Home, Modules, Chunks, Assets, Warnings, Erros, Hints로 구성되어있고, 메뉴마다 모듈 크기 의존도 등을 확인할 수 있다.
 
 ## 📚 기술 스택
 
