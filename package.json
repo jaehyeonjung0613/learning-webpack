@@ -9,7 +9,7 @@
     "start": "webpack serve --open",
     "server": "node server.js",
     "analysis": "webpack --profile --json > stats.json",
-    "build": "webpack",
+    "build": "webpack --env goal=local --env production",
     "deploy": "npm run build && npx gh-pages -d dist"
   },
   "author": "jaehyeonjung0613",
