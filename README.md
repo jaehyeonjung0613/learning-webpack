@@ -63,6 +63,14 @@ react에 대해 어느 정도 알고 있었지만 webpack은 생소하여 부족
 - [x] Extracting Boilerplate
 - [x] Module Identifiers
 
+### Autoring Libraries
+
+- [ ] Authoring a Library
+- [ ] Webpack Configuration
+- [ ] Expose the Library
+- [ ] Externalize Lodash
+- [ ] Final Steps
+
 ## 🧪 실험
 
 ### 특정 파일들 한 폴더에 bundle
