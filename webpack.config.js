@@ -15,7 +15,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Caching'
+      title: 'Authoring Libraries'
     })
   ],
   resolve: {
@@ -23,23 +23,26 @@ module.exports = {
     plugins: [new TsconfigPathsPlugin({})]
   },
   output: {
-    filename: '[name].[contenthash].bundle.js',
+    filename: 'webpack-numbers.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
-    publicPath: '/'
+    publicPath: '/',
+    globalObject: 'this',
+    library: {
+      name: 'webpackNumbers',
+      type: 'umd'
+    }
+  },
+  externals: {
+    lodash: {
+      commonjs: 'lodash',
+      commonjs2: 'lodash',
+      amd: 'lodash',
+      root: '_'
+    }
   },
   optimization: {
-    moduleIds: 'deterministic',
-    runtimeChunk: 'single',
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all'
-        }
-      }
-    }
+    moduleIds: 'deterministic'
   },
   module: {
     rules: [

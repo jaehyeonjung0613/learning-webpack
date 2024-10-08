@@ -65,11 +65,11 @@ react에 대해 어느 정도 알고 있었지만 webpack은 생소하여 부족
 
 ### Autoring Libraries
 
-- [ ] Authoring a Library
-- [ ] Webpack Configuration
-- [ ] Expose the Library
-- [ ] Externalize Lodash
-- [ ] Final Steps
+- [x] Authoring a Library
+- [x] Webpack Configuration
+- [x] Expose the Library
+- [x] Externalize Lodash
+- [x] Final Steps
 
 ## 🧪 실험
 
