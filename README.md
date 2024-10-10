@@ -73,6 +73,14 @@ react에 대해 어느 정도 알고 있었지만 webpack은 생소하여 부족
 
 ### Environment Variables
 
+### Hot Module Replacement
+
+- [ ] Enabling HRM
+- [ ] Via the Node.js API
+- [ ] Gotchas
+- [ ] HWR with Stylesheets
+- [ ] Other Code and Frameworks
+
 ## 🧪 실험
 
 ### 특정 파일들 한 폴더에 bundle
