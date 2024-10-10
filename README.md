@@ -75,11 +75,11 @@ react에 대해 어느 정도 알고 있었지만 webpack은 생소하여 부족
 
 ### Hot Module Replacement
 
-- [ ] Enabling HRM
-- [ ] Via the Node.js API
-- [ ] Gotchas
-- [ ] HWR with Stylesheets
-- [ ] Other Code and Frameworks
+- [x] Enabling HRM
+- [x] Via the Node.js API
+- [x] Gotchas
+- [x] HWR with Stylesheets
+- [x] Other Code and Frameworks
 
 ## 🧪 실험
 
