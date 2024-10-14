@@ -83,11 +83,11 @@ react에 대해 어느 정도 알고 있었지만 webpack은 생소하여 부족
 
 ### Tree Shaking
 
-- [ ] Add a Utility
-- [ ] Mark the file as side-effect-free
-- [ ] Clarifying tree shaking and sideEffects
-- [ ] Mark a function call as side-effect-tree
-- [ ] Minify the Output
+- [x] Add a Utility
+- [x] Mark the file as side-effect-free
+- [x] Clarifying tree shaking and sideEffects
+- [x] Mark a function call as side-effect-tree
+- [x] Minify the Output
 
 ## 🧪 실험
 

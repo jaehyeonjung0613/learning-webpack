@@ -1,5 +1,6 @@
 {
   "name": "learning-webpack",
+  "sideEffects": false,
   "version": "0.0.0",
   "description": "웹팩 가이드라인 따라해보면서 학습해보기",
   "main": "index.html",

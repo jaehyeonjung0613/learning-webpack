@@ -3,27 +3,18 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
-const webpack = require('webpack');
-
 module.exports = {
   mode: 'development',
-  entry: {
-    app: './src/index.ts',
-    hot: 'webpack/hot/dev-server.js',
-    client: 'webpack-dev-server/client/index.js?hot=true&live-reload=true'
-  },
+  entry: './src/index.ts',
   devtool: 'inline-source-map',
   devServer: {
     static: './dist',
-    port: 3000,
-    hot: false,
-    client: false
+    port: 3000
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Hot Module Replacement'
-    }),
-    new webpack.HotModuleReplacementPlugin()
+      title: 'Tree Shaking'
+    })
   ],
   resolve: {
     extensions: ['.js', '.ts'],
@@ -34,6 +25,9 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     clean: true,
     publicPath: '/'
+  },
+  optimization: {
+    usedExports: true
   },
   module: {
     rules: [
