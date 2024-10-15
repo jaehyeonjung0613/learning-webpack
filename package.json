@@ -1,6 +1,5 @@
 {
   "name": "learning-webpack",
-  "sideEffects": false,
   "version": "0.0.0",
   "description": "웹팩 가이드라인 따라해보면서 학습해보기",
   "main": "index.html",
@@ -23,6 +22,7 @@
     "@typescript-eslint/eslint-plugin": "^8.7.0",
     "@typescript-eslint/parser": "^8.7.0",
     "css-loader": "^7.1.2",
+    "css-minimizer-webpack-plugin": "^7.0.0",
     "csv-loader": "^3.0.5",
     "eslint": "^9.11.1",
     "eslint-config-prettier": "^9.1.0",
@@ -31,6 +31,7 @@
     "html-webpack-plugin": "^5.6.0",
     "json5": "^2.2.3",
     "lodash": "^4.17.21",
+    "mini-css-extract-plugin": "^2.9.1",
     "prettier": "^3.3.3",
     "style-loader": "^4.0.0",
     "toml": "^3.0.0",

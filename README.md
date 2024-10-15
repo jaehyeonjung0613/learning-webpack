@@ -431,6 +431,124 @@ webpack 공식 분석 도구인 analyse 사용법을 확인해본다.
 
 Production 학습 과정에서 소개하는 CSS Minify 방법을 숙지한다.
 
+```css
+pre {
+  color: red;
+}
+```
+
+```typescript
+import './style.css';
+import { cube } from './math';
+```
+
+```js
+// webpack.common.js
+{
+  ...
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader']
+      }
+    ]
+  }
+}
+```
+
+css 파일을 번들링 과정에 추가하기 위해 style.css, index.ts, webpack.common.js 파일을 수정한다.
+
+```bash
+> learning-webpack@0.0.0 build
+> webpack --config webpack.prod.js
+
+asset app.bundle.js 4.67 KiB [emitted] [minimized] (name: app) 1 related asset
+asset index.html 219 bytes [compared for emit]
+runtime modules 698 bytes 4 modules
+orphan modules 1.2 KiB [orphan] 2 modules
+cacheable modules 10.8 KiB
+  modules by path ./node_modules/ 8.58 KiB
+    modules by path ./node_modules/style-loader/dist/runtime/*.js 5.84 KiB
+      ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js 2.42 KiB [built] [code generated]
+      ./node_modules/style-loader/dist/runtime/styleDomAPI.js 1.5 KiB [built] [code generated]
+      ./node_modules/style-loader/dist/runtime/insertBySelector.js 1000 bytes [built] [code generated]
+      + 3 modules
+    modules by path ./node_modules/css-loader/dist/runtime/*.js 2.74 KiB
+      ./node_modules/css-loader/dist/runtime/sourceMaps.js 505 bytes [built] [code generated]
+      ./node_modules/css-loader/dist/runtime/api.js 2.25 KiB [built] [code generated]
+  modules by path ./src/ 2.17 KiB
+    ./src/index.ts + 2 modules 1.57 KiB [built] [code generated]
+    ./node_modules/css-loader/dist/cjs.js!./src/style.css 610 bytes [built] [code generated]
+webpack 5.95.0 compiled successfully in 3368 ms
+```
+
+빌드 결과 css 번들링된 것을 확인할 수 있다.
+
+```bash
+npm install --save-dev mini-css-extract-plugin css-minimizer-webpack-plugin
+```
+
+```js
+// webpack.common.js
+...
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+
+module.exports = {
+  ...
+  optimization: {
+    minimizer: [`...`, new CssMinimizerPlugin()]
+  },
+}
+```
+
+```js
+// webpack.prod.js
+...
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+module.exports = {
+  ...
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css'
+    })
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader']
+      }
+    ]
+  }
+}
+```
+
+Css 최적화 관련 패키지를 설치한 다음 webpack common, prod에 플러그인을 추가한다.
+
+MiniCssExtractPlugin은 스타일 코드를 청크에서 파일로 추출하기 때문에 인라인보다 작동이 느리다.
+
+따라서 prod 환경일때만 적용되도록 따로 환경설정을 분리하였다.
+
+```bash
+> learning-webpack@0.0.0 build
+> webpack --config webpack.prod.js
+
+asset index.html 257 bytes [emitted]
+asset app.bundle.js 221 bytes [emitted] [minimized] (name: app) 1 related asset
+asset app.css 49 bytes [emitted] [minimized] (name: app) 1 related asset
+Entrypoint app 270 bytes (1.09 KiB) = app.css 49 bytes app.bundle.js 221 bytes 2 auxiliary assets
+orphan modules 3.48 KiB (javascript) 937 bytes (runtime) [orphan] 9 modules
+cacheable modules 484 bytes (javascript) 22 bytes (css/mini-extract)
+  ./src/index.ts + 1 modules 484 bytes [built] [code generated]
+  css ./node_modules/css-loader/dist/cjs.js!./src/style.css 22 bytes [built] [code generated]
+webpack 5.95.0 compiled successfully in 5866 ms
+```
+
+빌드 결과 css 파일이 추출되고 전보다 청크 크기가 작아진 것을 볼 수 있다.
+
 ## 📚 기술 스택
 
 ### 🔧 환경

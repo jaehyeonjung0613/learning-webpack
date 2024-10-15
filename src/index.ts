@@ -1,3 +1,4 @@
+import './style.css';
 import { cube } from './math';
 
 if (process.env.NODE_ENV !== 'production') {
