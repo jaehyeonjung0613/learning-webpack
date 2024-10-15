@@ -91,13 +91,12 @@ react에 대해 어느 정도 알고 있었지만 webpack은 생소하여 부족
 
 ### Production
 
-- [ ] Setup
-- [ ] NPM Scripts
-- [ ] Specify the Mode
-- [ ] Minification
-- [ ] Source Mapping
-- [ ] Minimize CSS
-- [ ] CLI Alternatives
+- [x] Setup
+- [x] NPM Scripts
+- [x] Specify the Mode
+- [x] Minification
+- [x] Source Mapping
+- [x] CLI Alternatives
 
 ## 🧪 실험
 

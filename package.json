@@ -7,10 +7,10 @@
   "scripts": {
     "prettier": "prettier --write .",
     "watch": "webpack --watch",
-    "start": "webpack serve --open",
+    "start": "webpack serve --open --config webpack.dev.js",
     "server": "node server.js",
     "analysis": "webpack --profile --json > stats.json",
-    "build": "webpack --env goal=local --env production",
+    "build": "webpack --config webpack.prod.js",
     "deploy": "npm run build && npx gh-pages -d dist"
   },
   "author": "jaehyeonjung0613",
@@ -41,6 +41,7 @@
     "webpack-cli": "^5.1.4",
     "webpack-dev-middleware": "^7.4.2",
     "webpack-dev-server": "^5.1.0",
+    "webpack-merge": "^6.0.1",
     "xml-loader": "^1.2.1",
     "yamljs": "^0.3.0"
   }
