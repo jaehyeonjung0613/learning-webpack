@@ -427,6 +427,10 @@ webpack 공식 분석 도구인 analyse 사용법을 확인해본다.
 
 메뉴는 Home, Modules, Chunks, Assets, Warnings, Erros, Hints로 구성되어있고, 메뉴마다 모듈 크기 의존도 등을 확인할 수 있다.
 
+### Minimize CSS
+
+Production 학습 과정에서 소개하는 CSS Minify 방법을 숙지한다.
+
 ## 📚 기술 스택
 
 ### 🔧 환경
