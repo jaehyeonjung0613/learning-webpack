@@ -6,10 +6,10 @@
   "scripts": {
     "prettier": "prettier --write .",
     "watch": "webpack --watch",
-    "start": "webpack serve --open --config webpack.dev.js",
+    "start": "webpack serve --open",
     "server": "node server.js",
     "analysis": "webpack --profile --json > stats.json",
-    "build": "webpack --config webpack.prod.js",
+    "build": "webpack",
     "deploy": "npm run build && npx gh-pages -d dist"
   },
   "author": "jaehyeonjung0613",

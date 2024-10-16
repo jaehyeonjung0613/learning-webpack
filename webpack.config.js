@@ -5,7 +5,9 @@ const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: './src/index.ts',
+  entry: {
+    index: './src/index.ts'
+  },
   devtool: 'inline-source-map',
   devServer: {
     static: './dist',
@@ -13,7 +15,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Tree Shaking'
+      title: 'Lazy Loading'
     })
   ],
   resolve: {
@@ -25,9 +27,6 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     clean: true,
     publicPath: '/'
-  },
-  optimization: {
-    usedExports: true
   },
   module: {
     rules: [

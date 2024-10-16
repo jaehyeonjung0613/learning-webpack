@@ -1,14 +1,21 @@
-import './style.css';
-import { cube } from './math';
-
-if (process.env.NODE_ENV !== 'production') {
-  console.log('Looks like we are in development mode!');
-}
+import _ from 'lodash';
 
 function component() {
-  const element = document.createElement('pre');
+  const element = document.createElement('div');
+  const button = document.createElement('button');
+  const br = document.createElement('br');
 
-  element.innerHTML = ['Hello webpack!', '5 cubed is equal to ' + cube(5)].join('\n\n');
+  button.innerHTML = 'Click me and look at the conosle';
+  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+  element.appendChild(br);
+  element.appendChild(button);
+
+  button.onclick = (e) =>
+    import('./print').then((module) => {
+      const print = module.default;
+
+      print();
+    });
 
   return element;
 }
