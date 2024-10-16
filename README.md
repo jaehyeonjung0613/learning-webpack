@@ -98,6 +98,11 @@ react에 대해 어느 정도 알고 있었지만 webpack은 생소하여 부족
 - [x] Source Mapping
 - [x] CLI Alternatives
 
+### Lazy Loading
+
+- [ ] Example
+- [ ] Frameworks
+
 ## 🧪 실험
 
 ### 특정 파일들 한 폴더에 bundle
