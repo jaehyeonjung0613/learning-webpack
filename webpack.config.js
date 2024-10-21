@@ -1,11 +1,14 @@
 const path = require('path');
 
+const webpack = require('webpack');
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
   mode: 'development',
   entry: {
+    polyfills: './src/polyfills',
     index: './src/index.ts'
   },
   devtool: 'inline-source-map',
@@ -14,8 +17,11 @@ module.exports = {
     port: 3000
   },
   plugins: [
+    new webpack.ProvidePlugin({
+      join: 'lodash'
+    }),
     new HtmlWebpackPlugin({
-      title: 'Lazy Loading'
+      title: 'Shimming'
     })
   ],
   resolve: {

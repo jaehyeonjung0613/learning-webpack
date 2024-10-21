@@ -45,5 +45,9 @@
     "webpack-merge": "^6.0.1",
     "xml-loader": "^1.2.1",
     "yamljs": "^0.3.0"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "whatwg-fetch": "^3.6.20"
   }
 }

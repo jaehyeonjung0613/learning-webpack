@@ -22,3 +22,7 @@ declare module '*.json5' {
   const content: { [key: string]: any };
   export default content;
 }
+
+export declare global {
+  const join: LoDashStatic.join;
+}
