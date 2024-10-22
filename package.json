@@ -43,6 +43,7 @@
     "webpack-dev-middleware": "^7.4.2",
     "webpack-dev-server": "^5.1.0",
     "webpack-merge": "^6.0.1",
+    "workbox-webpack-plugin": "^7.1.0",
     "xml-loader": "^1.2.1",
     "yamljs": "^0.3.0"
   },

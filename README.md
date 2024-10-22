@@ -116,9 +116,9 @@ react에 대해 어느 정도 알고 있었지만 webpack은 생소하여 부족
 
 ### Progressive Web Application
 
-- [ ] We Don't Work Offline Now
-- [ ] Adding Workbox
-- [ ] Registering Our Service Worker
+- [x] We Don't Work Offline Now
+- [x] Adding Workbox
+- [x] Registering Our Service Worker
 
 ## 🧪 실험
 

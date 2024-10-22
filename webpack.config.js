@@ -2,6 +2,7 @@ const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -15,7 +16,11 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Web Workers'
+      title: 'Progressive Web Application'
+    }),
+    new WorkboxPlugin.GenerateSW({
+      clientsClaim: true,
+      skipWaiting: true
     })
   ],
   resolve: {
